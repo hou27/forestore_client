@@ -23,7 +23,12 @@ def main():
         "How long?", min_value=10, max_value=100, value=20, step=1
     )
 
-    line_chart = st.line_chart(chart_data_with_index[:how_long])
+    filtered_data = chart_data_with_index[list(map(lambda x: x.lower(), multiselect))]
+
+    if multiselect:
+        line_chart = st.line_chart(filtered_data[:how_long])
+    else:
+        line_chart = st.line_chart(chart_data_with_index[:how_long])
 
     st.dataframe(chart_data_with_index)
 
