@@ -23,3 +23,9 @@
 
 # python venv
 venv*/
+
+# python cache
+__pycache__/
+
+# jupyter notebook
+*.ipynb
