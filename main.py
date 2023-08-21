@@ -31,6 +31,7 @@ def show_filtered_charts(lookback_range, chart_data, timestamps, selected_items=
     st.line_chart(filtered_data[:lookback_range])
     st.write("마지막 시간과 재고량")
     st.dataframe(filtered_last_timestamp)
+    st.write("전체 데이터")
     st.dataframe(filtered_data)
 
 
