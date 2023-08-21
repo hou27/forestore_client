@@ -12,7 +12,7 @@ def get_mocking_data():
 
     # Create timestamp list
     timestamps = [
-        timestamp_base + datetime.timedelta(minutes=i)
+        timestamp_base + datetime.timedelta(minutes=i * 60)
         for i in range(len(predictions[0]))
     ]
 
