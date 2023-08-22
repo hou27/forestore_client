@@ -70,10 +70,12 @@ def main():
 
     st.write(f"{len(chart_data.columns)}개 품목에 대한 재고 현황을 보여줍니다.")
 
-    # 초기 값은 chart_data.columns 내의 랜덤한 3개 항목
-    init_selected_items = np.random.choice(chart_data.columns, 3, replace=False)
+    # 초기 값은 last_timestamp값이 가장 빠른 시점인 3개
+    init_selected_items = last_timestamp.sort_values(by="last_timestamp").index[:3]
 
-    selected_items = st.multiselect("품목을 선택하세요", chart_data.columns)
+    selected_items = st.multiselect(
+        "품목을 선택하세요 (초기 항목들은 예상 재고 소진 시점이 가장 이른 항목들입니다.)", chart_data.columns
+    )
     lookback_range = st.slider(
         "몇시간 뒤까지 보고 싶으신가요?", min_value=10, max_value=100, value=20, step=1
     )
