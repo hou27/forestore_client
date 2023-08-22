@@ -276,9 +276,11 @@ def predict(df: pd.DataFrame) -> list:
 
 
 def save_predictions():
+    df = pd.read_excel("명지마트_재고.xlsx")
+
     prediction_list = [[] for _ in range(302)]
     for idx in range(1, 302):
-        predictions = all(idx)
+        predictions = all(df[df["item_id"] == idx])
         prediction_list[idx] = np.array(predictions)
 
     pd.DataFrame(prediction_list).to_excel("prediction_list.xlsx")
