@@ -4,6 +4,7 @@ import numpy as np
 
 from last_timestamp import get_last_timestamp
 from data import get_predictions, update_chart_data
+from product_info import product_info_dict
 
 
 @st.cache_data()  # 캐싱 추가
@@ -14,7 +15,9 @@ def get_chart_data():
     chart_data, last_timestamp = update_chart_data(chart_data, length_of_cycle)
 
     last_timestamp_dataframe = pd.DataFrame(last_timestamp, columns=["timestamp"])
-    last_timestamp_dataframe["item_id"] = [i for i in range(1, len(last_timestamp) + 1)]
+    last_timestamp_dataframe["item_id"] = [
+        product_info_dict[i] for i in range(1, len(last_timestamp) + 1)
+    ]
     last_timestamp_dataframe = last_timestamp_dataframe.set_index("item_id")
     last_timestamp_dataframe.columns = ["last_timestamp"]
 
@@ -26,9 +29,7 @@ def show_filtered_charts(lookback_range, chart_data, timestamps, selected_items=
         selected_items = chart_data.columns
 
     filtered_data = chart_data[list(map(lambda x: x, selected_items))]
-    filtered_last_timestamp = timestamps.iloc[
-        list(map(lambda x: str(int(x) - 1), selected_items))
-    ]
+    filtered_last_timestamp = timestamps.loc[list(map(lambda x: x, selected_items))]
 
     chart = st.empty()  # 준비된 요소 생성
 
@@ -68,7 +69,7 @@ def main():
 
     chart_data, last_timestamp = get_chart_data()
 
-    selected_items = st.multiselect("Choose Item", chart_data.columns)
+    selected_items = st.multiselect("품목을 선택하세요", chart_data.columns)
     lookback_range = st.slider(
         "몇시간 뒤까지 보고 싶으신가요?", min_value=10, max_value=100, value=20, step=1
     )
