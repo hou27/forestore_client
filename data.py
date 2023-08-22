@@ -1,3 +1,4 @@
+import math
 import pandas as pd
 import datetime
 
@@ -9,7 +10,8 @@ def get_predictions(is_test: bool = True):
 
     if is_test:
         # predictions_df = pd.read_excel("small_test_prediction_list.xlsx")
-        predictions_df = pd.read_excel("test_prediction_list.xlsx")
+        # predictions_df = pd.read_excel("test_prediction_list.xlsx")
+        predictions_df = pd.read_excel("test_prediction_list_variety_ver.xlsx")
     else:
         predictions_df = pd.read_excel("prediction_list.xlsx")
 
