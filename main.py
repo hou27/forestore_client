@@ -3,12 +3,13 @@ import pandas as pd
 import numpy as np
 
 from last_timestamp import get_last_timestamp
-from mocking_data import get_mocking_data
+from data import get_predictions
 
 
 @st.cache_data()  # 캐싱 추가
 def get_chart_data():
-    chart_data = get_mocking_data()
+    chart_data = get_predictions()
+    # chart_data = get_predictions(is_test=False)
     last_timestamp = get_last_timestamp(chart_data)
 
     last_timestamp_dataframe = pd.DataFrame(last_timestamp, columns=["timestamp"])
