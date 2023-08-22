@@ -1,5 +1,5 @@
 # excel files
-*.xlsx
+# *.xlsx
 
 # OS
 .DS_Store
