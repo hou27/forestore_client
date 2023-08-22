@@ -31,13 +31,23 @@ def show_filtered_charts(lookback_range, chart_data, timestamps, selected_items=
     filtered_data = chart_data[list(map(lambda x: x, selected_items))]
     filtered_last_timestamp = timestamps.loc[list(map(lambda x: x, selected_items))]
 
+    # 예측된 재고량 데이터 그래프
     chart = st.empty()  # 준비된 요소 생성
+    chart.line_chart(filtered_data[:lookback_range])
 
-    chart.plotly_chart(
-        draw_graph(filtered_data[:lookback_range]),
-        use_container_width=True,
-        config={"responsive": True},
+    # 품목별 현재 재고량
+    st.markdown(
+        """
+    <p>품목별 현재 재고량</p>
+    """,
+        unsafe_allow_html=True,
     )
+    current_inventory = filtered_data.iloc[0]
+    current_inventory.name = "현재 재고량"
+    current_inventory_dataframe = st.empty()  # 준비된 요소 생성
+    current_inventory_dataframe.dataframe(current_inventory)
+
+    # 예상 재고 소진 시점
     st.markdown(
         """
     <p>예상 재고 소진 시점</p>
@@ -46,6 +56,8 @@ def show_filtered_charts(lookback_range, chart_data, timestamps, selected_items=
     )
     chart_dataframe = st.empty()  # 준비된 요소 생성
     chart_dataframe.dataframe(filtered_last_timestamp)
+
+    # 선택된 항목에 대한 전체 데이터
     st.markdown(
         """
     <p>전체 데이터를 보고 싶으시다면 아래 버튼을 눌러주세요.</p>
