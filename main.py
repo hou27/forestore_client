@@ -65,9 +65,13 @@ def show_filtered_charts(lookback_range, chart_data, timestamps, selected_items=
 
 def main():
     st.title("명지 마트 재고 현황")
-    st.write("301개 품목에 대한 재고 현황을 보여줍니다.")
 
     chart_data, last_timestamp = get_chart_data()
+
+    st.write(f"{len(chart_data.columns)}개 품목에 대한 재고 현황을 보여줍니다.")
+
+    # 초기 값은 chart_data.columns 내의 랜덤한 3개 항목
+    init_selected_items = np.random.choice(chart_data.columns, 3, replace=False)
 
     selected_items = st.multiselect("품목을 선택하세요", chart_data.columns)
     lookback_range = st.slider(
@@ -80,7 +84,7 @@ def main():
         )  # 변경되지 않은 부분
     else:
         show_filtered_charts(
-            lookback_range, chart_data, last_timestamp, chart_data
+            lookback_range, chart_data, last_timestamp, init_selected_items
         )  # 변경되지 않은 부분
 
 
