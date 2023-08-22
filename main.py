@@ -79,11 +79,11 @@ def show_filtered_charts(lookback_range, chart_data, timestamps, selected_items=
 
 
 def main():
-    st.title("명지 마트 재고 현황")
+    st.title("명지 마트 재고 소진 시기")
 
     chart_data, last_timestamp = get_chart_data()
 
-    st.write(f"{len(chart_data.columns)}개 품목에 대한 재고 현황을 보여줍니다.")
+    st.write(f"{len(chart_data.columns)}개 품목에 대해 예측된 재고 소진 시기를 보여줍니다.")
 
     # 초기 값은 last_timestamp값이 가장 빠른 시점인 3개
     init_selected_items = last_timestamp.sort_values(by="last_timestamp").index[:3]
