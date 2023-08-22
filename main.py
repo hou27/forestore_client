@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-from draw_graph import draw_graph
 from last_timestamp import get_last_timestamp
 from data import get_predictions, update_chart_data
 from product_info import product_info_dict
