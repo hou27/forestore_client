@@ -46,8 +46,8 @@ def main():
     chart_data, last_timestamp = get_chart_data()
 
     selected_items = st.multiselect("Choose Item", chart_data.columns)
-    lookback_range = st.number_input(
-        "How long?", min_value=10, max_value=100, value=20, step=1
+    lookback_range = st.slider(
+        "몇시간 뒤까지 보고 싶으신가요?", min_value=10, max_value=100, value=20, step=1
     )
 
     if selected_items:
