@@ -55,6 +55,7 @@ def get_predictions(is_test: bool = True):
 
 
 def update_chart_data(chart_data, length_of_cycle):
+    last_timestamp = []
     num_columns = len(chart_data.columns)
 
     for idx in range(num_columns):
@@ -72,4 +73,6 @@ def update_chart_data(chart_data, length_of_cycle):
                     j += 1
                 column_data.iloc[j:] = 0  # j 이후의 값들을 모두 0으로 바꿈
 
-    return chart_data
+        last_timestamp.append(chart_data.iloc[j].name)
+
+    return chart_data, last_timestamp

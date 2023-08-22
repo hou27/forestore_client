@@ -10,8 +10,8 @@ from data import get_predictions, update_chart_data
 def get_chart_data():
     chart_data = get_predictions()
     # chart_data = get_predictions(is_test=False)
-    last_timestamp, length_of_cycle = get_last_timestamp(chart_data)
-    chart_data = update_chart_data(chart_data, length_of_cycle)
+    length_of_cycle = get_last_timestamp(chart_data)
+    chart_data, last_timestamp = update_chart_data(chart_data, length_of_cycle)
 
     last_timestamp_dataframe = pd.DataFrame(last_timestamp, columns=["timestamp"])
     last_timestamp_dataframe["item_id"] = [i for i in range(1, len(last_timestamp) + 1)]
