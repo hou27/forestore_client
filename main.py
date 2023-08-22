@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 
+from draw_graph import draw_graph
 from last_timestamp import get_last_timestamp
 from data import get_predictions, update_chart_data
 from product_info import product_info_dict
@@ -33,7 +33,11 @@ def show_filtered_charts(lookback_range, chart_data, timestamps, selected_items=
 
     chart = st.empty()  # 준비된 요소 생성
 
-    chart.line_chart(filtered_data[:lookback_range])
+    chart.plotly_chart(
+        draw_graph(filtered_data[:lookback_range]),
+        use_container_width=True,
+        config={"responsive": True},
+    )
     st.markdown(
         """
     <p>예상 재고 소진 시점</p>
