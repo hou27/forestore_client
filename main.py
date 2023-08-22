@@ -31,13 +31,35 @@ def show_filtered_charts(lookback_range, chart_data, timestamps, selected_items=
     ]
 
     chart = st.empty()  # 준비된 요소 생성
-    chart_dataframe = st.empty()  # 준비된 요소 생성
 
     chart.line_chart(filtered_data[:lookback_range])
-    st.write("마지막 시간과 재고량")
+    st.markdown(
+        """
+    <p>예상 재고 소진 시점</p>
+    """,
+        unsafe_allow_html=True,
+    )
+    chart_dataframe = st.empty()  # 준비된 요소 생성
     chart_dataframe.dataframe(filtered_last_timestamp)
-    st.write("전체 데이터")
-    st.dataframe(filtered_data)
+    st.markdown(
+        """
+    <p>전체 데이터를 보고 싶으시다면 아래 버튼을 눌러주세요.</p>
+    """,
+        unsafe_allow_html=True,
+    )
+    # 버튼 초기 상태 설정
+    if "toggle" not in st.session_state:
+        st.session_state["toggle"] = False
+
+    # 버튼을 누르면 상태가 반전됨
+    if st.button("전체 데이터 보기"):
+        st.session_state["toggle"] = not st.session_state["toggle"]
+
+    # 상태에 따라 요소를 표시 또는 숨김
+    if st.session_state["toggle"]:
+        st.dataframe(filtered_data)
+    else:
+        pass
 
 
 def main():
