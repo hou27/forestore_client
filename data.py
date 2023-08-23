@@ -9,11 +9,9 @@ def get_predictions(is_test: bool = True):
     predictions_df = None
 
     if is_test:
-        # predictions_df = pd.read_excel("small_test_prediction_list.xlsx")
-        # predictions_df = pd.read_excel("test_prediction_list.xlsx")
-        predictions_df = pd.read_excel("test_prediction_list_variety_ver.xlsx")
+        predictions_df = pd.read_excel("./data/test_prediction_list_variety_ver.xlsx")
     else:
-        predictions_df = pd.read_excel("prediction_list.xlsx")
+        predictions_df = pd.read_excel("./data/prediction_list.xlsx")
 
     predictions = [
         predictions_df.iloc[i].tolist() for i in range(1, len(predictions_df))

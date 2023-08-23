@@ -209,13 +209,13 @@ def predict(df: pd.DataFrame) -> list:
 
     # 저장한 모델을 불러오는 코드
     actor = LSTMActor(state_dim).to(device)
-    actor.load_state_dict(torch.load("./actor_model.pth"))
+    actor.load_state_dict(torch.load("./model/actor_model.pth"))
 
     critic1 = LSTMCritic(state_dim, action_dim=1).to(device)
-    critic1.load_state_dict(torch.load("./critic1_model.pth"))
+    critic1.load_state_dict(torch.load("./model/critic1_model.pth"))
 
     critic2 = LSTMCritic(state_dim, action_dim=1).to(device)
-    critic2.load_state_dict(torch.load("./critic2_model.pth"))
+    critic2.load_state_dict(torch.load("./model/critic2_model.pth"))
 
     actor_optimizer = optim.Adam(actor.parameters(), lr=actor_lr)
     critic1_optimizer = optim.Adam(critic1.parameters(), lr=critic_lr)
@@ -283,4 +283,4 @@ def save_predictions():
         predictions = all(df[df["item_id"] == idx])
         prediction_list[idx] = np.array(predictions)
 
-    pd.DataFrame(prediction_list).to_excel("prediction_list.xlsx")
+    pd.DataFrame(prediction_list).to_excel("./data/prediction_list.xlsx")
