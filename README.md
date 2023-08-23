@@ -24,7 +24,6 @@
  <li><a href="#features">Features</a></li>
  <li><a href="#flowchart">Flow Chart</a></li>
  <li><a href="#expectation">Expectation</a></li>
- <li><a href="#competitiveness">Competitiveness</a></li>
  <li><a href="#gettingstarted">Getting Started</a></li>
 </ol>
 
@@ -59,7 +58,7 @@
 - python 3.8.10
 - streamlit
 
-### 😄 ML(재고량 예측)
+### :robot: ML(재고량 예측)
 
 - python 3.8.10
 - tensorflow
