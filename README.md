@@ -35,7 +35,7 @@
 
 <h2 id="flowchart"> 🛠️  Flow Chart </h2>
 
-<img width="500" alt="Guessme_project_architecture" src="https://github.com/hou27/mock_mart_data/assets/65845941/888f0978-2048-461c-8f6f-ff12a20cd75d">
+<img width="500" alt="Guessme_project_architecture" src="https://github.com/hou27/mju_mart_visualize/assets/65845941/0935f383-c0f6-4630-a137-7eda8672acb2">
 
 > **Forestore**는 **재고량 예측**을 통해 **재고 관리를 효율적으로 할 수 있는 서비스**입니다.  
 > 주기적으로 모델이 실시간 데이터를 기반으로 예측하며, 사용자는 모델이 업데이트 해둔 '예측된 재고량'을 확인할 수 있습니다.
